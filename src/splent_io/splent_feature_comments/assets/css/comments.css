@@ -1,0 +1,123 @@
+/* ══════════════════════════════════════════════════════════════════════════
+   Comments thread — styled to match the theme via brand tokens. Loaded through
+   the asset registry (register_asset in init_feature), rendered into the post
+   detail via the post.comments hook.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+.comments-thread {
+    max-width: 760px;
+}
+
+.comments-thread__heading {
+    margin-bottom: 1.5rem;
+}
+
+/* ── Comment list ──────────────────────────────────────────────────────────── */
+.comments-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.comments-list .comment {
+    padding: 1rem 1.25rem;
+    background: var(--brand-surface, #f7f7f8);
+    border: 1px solid var(--brand-border, #e5e7eb);
+    border-radius: var(--brand-radius, 8px);
+}
+
+.comment__header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: .4rem;
+}
+
+.comment__author {
+    color: var(--brand-heading, #222222);
+}
+
+.comment__date {
+    font-size: .85rem;
+    color: var(--brand-muted, #6b7280);
+    white-space: nowrap;
+}
+
+.comment__content {
+    margin: 0;
+    color: var(--brand-text, #2b2b2b);
+    line-height: 1.6;
+    white-space: pre-line;
+}
+
+.comments-list .comment--empty {
+    background: transparent;
+    border: 1px dashed var(--brand-border, #e5e7eb);
+    color: var(--brand-muted, #6b7280);
+    text-align: center;
+}
+
+/* ── Comment form ──────────────────────────────────────────────────────────── */
+.comment-form {
+    max-width: 560px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+    padding: 1.5rem;
+    background: var(--brand-bg, #ffffff);
+    border: 1px solid var(--brand-border, #e5e7eb);
+    border-radius: var(--brand-radius, 8px);
+}
+
+.comment-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: .35rem;
+    margin: 0;
+}
+
+.comment-form label {
+    font-weight: 600;
+    font-size: .95rem;
+    color: var(--brand-heading, #222222);
+}
+
+.comment-form .form-control {
+    width: 100%;
+    padding: .6rem .75rem;
+    border: 1px solid var(--brand-border, #e5e7eb);
+    border-radius: var(--brand-radius, 6px);
+    background: var(--brand-bg, #ffffff);
+    color: var(--brand-text, #2b2b2b);
+    font: inherit;
+}
+
+.comment-form .form-control:focus {
+    outline: none;
+    border-color: var(--brand-primary, #DD3333);
+    box-shadow: 0 0 0 3px color-mix(in srgb, var(--brand-primary, #DD3333) 20%, transparent);
+}
+
+.comment-form textarea.form-control {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.comment-form .btn {
+    align-self: flex-start;
+}
+
+.comment-form__note {
+    margin: 0;
+    font-size: .85rem;
+}
+
+/* Captcha widget breathing room */
+.comment-form .cf-turnstile,
+.comment-form .g-recaptcha {
+    margin: .25rem 0;
+}

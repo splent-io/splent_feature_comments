@@ -7,7 +7,12 @@ comments_bp = create_blueprint(__name__)
 
 
 def init_feature(app):
+    from splent_framework.assets.asset_registry import register_asset
+
     register_service(app, "CommentsService", CommentsService)
+    register_asset(
+        "css", "comments.assets", order=100, subfolder="css", filename="comments.css"
+    )
 
 
 def inject_context_vars(app):
