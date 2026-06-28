@@ -1,0 +1,93 @@
+{# ------------------------------------------------------------------ #}
+{# Comments thread partial.                                            #}
+{# Rendered INTO the post detail page (NOT a full page, no extends).   #}
+{# Context: `post`, `comments` (approved, oldest first).               #}
+{# ------------------------------------------------------------------ #}
+<section class="section comments-thread">
+  <div class="container">
+
+    <h2 class="comments-thread__heading">
+      {{ _('Comments') }} ({{ comments|length }})
+    </h2>
+
+    {# Flash messages #}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="comments-thread__flashes">
+          {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">{{ message }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {# Comment list #}
+    <ul class="comments-list">
+      {% for c in comments %}
+        <li class="comment">
+          <div class="comment__header">
+            <strong class="comment__author">{{ c.author_name }}</strong>
+            <time class="comment__date text-muted"
+                  datetime="{{ c.created_at.isoformat() }}">
+              {{ c.created_at.strftime('%d %b %Y') }}
+            </time>
+          </div>
+          <p class="comment__content">{{ c.content }}</p>
+        </li>
+      {% else %}
+        <li class="comment comment--empty text-muted">
+          {{ _('No comments yet. Be the first!') }}
+        </li>
+      {% endfor %}
+    </ul>
+
+    {# Comment form — only when the post still accepts comments #}
+    {% if post.comment_status != 'closed' %}
+      <form class="comment-form"
+            method="POST"
+            action="{{ url_for('comments.create', post_id=post.id) }}">
+
+        <div class="form-group">
+          <label for="comment-author-name">{{ _('Name') }}</label>
+          <input type="text"
+                 id="comment-author-name"
+                 name="author_name"
+                 class="form-control"
+                 required>
+        </div>
+
+        <div class="form-group">
+          <label for="comment-author-email">{{ _('Email (optional)') }}</label>
+          <input type="email"
+                 id="comment-author-email"
+                 name="author_email"
+                 class="form-control">
+        </div>
+
+        <div class="form-group">
+          <label for="comment-content">{{ _('Comment') }}</label>
+          <textarea id="comment-content"
+                    name="content"
+                    class="form-control"
+                    rows="4"
+                    required></textarea>
+        </div>
+
+        {# Captcha widget (cloudflare / recaptcha) — empty when none installed #}
+        {% if captcha_widget is defined %}
+          {{ captcha_script() }}
+          {{ captcha_widget() }}
+        {% endif %}
+
+        <button type="submit" class="btn btn-primary">
+          {{ _('Post comment') }}
+        </button>
+
+        <p class="comment-form__note text-muted">
+          {{ _('Comments are moderated before appearing.') }}
+        </p>
+      </form>
+    {% endif %}
+
+  </div>
+</section>

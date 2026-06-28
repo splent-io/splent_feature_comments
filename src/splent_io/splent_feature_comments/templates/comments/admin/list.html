@@ -1,0 +1,83 @@
+{% extends "base_template.html" %}
+
+{% block title %}{{ _('Comments') }}{% endblock %}
+
+{% block content %}
+<div class="container section">
+
+  <header class="page-header">
+    <h1>{{ _('Comments') }}</h1>
+    <p class="text-muted">{{ _('Moderate comments submitted by visitors.') }}</p>
+  </header>
+
+  {# Flash messages #}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div class="admin-flashes">
+        {% for category, message in messages %}
+          <div class="alert alert-{{ category }}">{{ message }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <table class="table">
+    <thead>
+      <tr>
+        <th>{{ _('Author') }}</th>
+        <th>{{ _('Comment') }}</th>
+        <th>{{ _('Date') }}</th>
+        <th>{{ _('Status') }}</th>
+        <th>{{ _('Actions') }}</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for c in comments %}
+        <tr>
+          <td>
+            <strong>{{ c.author_name }}</strong>
+            {% if c.author_email %}
+              <br><span class="text-muted">{{ c.author_email }}</span>
+            {% endif %}
+          </td>
+          <td>{{ c.content|truncate(100, true) }}</td>
+          <td>{{ c.created_at.strftime('%Y-%m-%d %H:%M') }}</td>
+          <td>
+            {% if c.approved %}
+              <span class="badge bg-success">{{ _('approved') }}</span>
+            {% else %}
+              <span class="badge bg-warning text-dark">{{ _('pending') }}</span>
+            {% endif %}
+          </td>
+          <td class="comment-actions">
+            {% if not c.approved %}
+              <form method="POST"
+                    action="{{ url_for('comments.admin_approve', comment_id=c.id) }}"
+                    class="d-inline">
+                <button type="submit" class="btn btn-sm btn-success">
+                  {{ _('Approve') }}
+                </button>
+              </form>
+            {% endif %}
+            <form method="POST"
+                  action="{{ url_for('comments.admin_delete', comment_id=c.id) }}"
+                  class="d-inline"
+                  onsubmit="return confirm('{{ _('Delete this comment?') }}');">
+              <button type="submit" class="btn btn-sm btn-danger">
+                {{ _('Delete') }}
+              </button>
+            </form>
+          </td>
+        </tr>
+      {% else %}
+        <tr>
+          <td colspan="5" class="text-muted text-center">
+            {{ _('No comments yet.') }}
+          </td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+</div>
+{% endblock %}
