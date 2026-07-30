@@ -46,6 +46,7 @@
       <form class="comment-form"
             method="POST"
             action="{{ url_for('comments.create', post_id=post.id) }}">
+          <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
         <div class="form-group">
           <label for="comment-author-name">{{ _('Name') }}</label>

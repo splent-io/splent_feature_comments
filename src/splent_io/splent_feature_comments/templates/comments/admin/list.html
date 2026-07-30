@@ -54,6 +54,7 @@
               <form method="POST"
                     action="{{ url_for('comments.admin_approve', comment_id=c.id) }}"
                     class="d-inline">
+                  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
                 <button type="submit" class="btn btn-sm btn-success">
                   {{ _('Approve') }}
                 </button>
@@ -63,6 +64,7 @@
                   action="{{ url_for('comments.admin_delete', comment_id=c.id) }}"
                   class="d-inline"
                   onsubmit="return confirm('{{ _('Delete this comment?') }}');">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
               <button type="submit" class="btn btn-sm btn-danger">
                 {{ _('Delete') }}
               </button>
