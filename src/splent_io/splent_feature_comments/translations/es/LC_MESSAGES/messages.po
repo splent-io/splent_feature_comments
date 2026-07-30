@@ -1,0 +1,95 @@
+# Spanish translations for PROJECT.
+# Copyright (C) 2026 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2026-07-30 12:00+0000\n"
+"PO-Revision-Date: 2026-07-30 12:00+0000\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: es\n"
+"Language-Team: es <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.18.0\n"
+
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:3
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:9
+#: src/splent_io/splent_feature_comments/templates/comments/thread.html:10
+msgid "Comments"
+msgstr "Comentarios"
+
+#: src/splent_io/splent_feature_comments/templates/comments/thread.html:39
+msgid "No comments yet. Be the first!"
+msgstr "Todavía no hay comentarios. ¡Sé el primero!"
+
+#: src/splent_io/splent_feature_comments/templates/comments/thread.html:51
+msgid "Name"
+msgstr "Nombre"
+
+#: src/splent_io/splent_feature_comments/templates/comments/thread.html:60
+msgid "Email (optional)"
+msgstr "Email (opcional)"
+
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:28
+#: src/splent_io/splent_feature_comments/templates/comments/thread.html:68
+msgid "Comment"
+msgstr "Comentario"
+
+#: src/splent_io/splent_feature_comments/templates/comments/thread.html:83
+msgid "Post comment"
+msgstr "Publicar comentario"
+
+#: src/splent_io/splent_feature_comments/templates/comments/thread.html:87
+msgid "Comments are moderated before appearing."
+msgstr "Los comentarios se moderan antes de publicarse."
+
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:10
+msgid "Moderate comments submitted by visitors."
+msgstr "Modera los comentarios que envían los visitantes."
+
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:27
+msgid "Author"
+msgstr "Autor"
+
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:29
+msgid "Date"
+msgstr "Fecha"
+
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:30
+msgid "Status"
+msgstr "Estado"
+
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:31
+msgid "Actions"
+msgstr "Acciones"
+
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:47
+msgid "approved"
+msgstr "aprobado"
+
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:49
+msgid "pending"
+msgstr "pendiente"
+
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:58
+msgid "Approve"
+msgstr "Aprobar"
+
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:65
+msgid "Delete this comment?"
+msgstr "¿Eliminar este comentario?"
+
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:67
+msgid "Delete"
+msgstr "Eliminar"
+
+#: src/splent_io/splent_feature_comments/templates/comments/admin/list.html:75
+msgid "No comments yet."
+msgstr "Todavía no hay comentarios."
+

@@ -18,3 +18,7 @@ recursive-include src/splent_io/splent_feature_comments/templates *.html
 
 # Alembic migration config and scripts
 recursive-include src/splent_io/splent_feature_comments/migrations *.py *.ini *.mako
+
+# Translations. The .mo is what gettext reads at runtime; the .po
+# travels with it so the next translator has something to edit.
+recursive-include src/splent_io/splent_feature_comments/translations *.mo *.po *.pot
