@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "splent_feature_comments"
-version = "0.1.1"
+version = "0.1.2"
 readme = "README.md"
 requires-python = ">=3.13"
 
@@ -25,8 +25,10 @@ cli_version = "1.11.0"
 
 # ── Feature Contract (auto-generated) ────────────────────────────────────────
 # Do not edit manually — re-run `splent feature:contract --write` to refresh.
-# Preserved across refreshes: description, category, tags, env, and
-# requires.features_manual (dependencies invisible to static analysis).
+# Preserved across refreshes: description, category, tags, env,
+# requires.features_manual (dependencies invisible to static analysis)
+# and provides.routes_manual (routes built from configuration at
+# registration time, which have no literal path to find in source).
 [tool.splent.contract]
 description = "Visitor comments on posts with moderation (public form + admin approval)"
 archetype = "full"
@@ -39,7 +41,7 @@ commands   = ["hello"]
 hooks      = ["layout.authenticated_sidebar", "post.comments"]
 services   = ["CommentsService"]
 signals    = ["comment-created", "comment-submitting"]
-translations = []
+translations = ["es"]
 docker     = []
 
 [tool.splent.contract.requires]
