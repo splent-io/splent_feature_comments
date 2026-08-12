@@ -6,13 +6,10 @@ request/response cycles (GET, POST, redirects, rendered HTML).
 """
 
 
-def test_create_unknown_post_is_404(test_client):
-    """The only public route is POST /comments/<post_id>; a missing post 404s."""
-    response = test_client.post(
-        "/comments/999999",
-        data={"author_name": "Someone", "content": "Hello"},
-    )
-    assert response.status_code == 404
+def test_create_without_fields_redirects_back(test_client):
+    """POST /comments/<post_id> flashes and redirects when fields are missing."""
+    response = test_client.post("/comments/1", data={})
+    assert response.status_code == 302
 
 
 def test_index_route_does_not_exist(test_client):
