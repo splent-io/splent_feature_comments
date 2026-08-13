@@ -2,6 +2,7 @@ from flask import render_template, request, url_for
 
 from splent_framework.hooks.template_hooks import register_template_hook
 from splent_framework.services.service_locator import service_proxy
+from splent_framework.settings.settings_schema import get_config
 
 
 def post_comments(post):
@@ -9,9 +10,16 @@ def post_comments(post):
 
     Receives the current post and renders the approved comments plus the
     submission form (with a Turnstile widget if cloudflare is installed).
+    The form's moderation note follows the auto_approve setting, so the page
+    never promises moderation a panel switch has turned off.
     """
     comments = service_proxy("CommentsService").approved_for(post.id)
-    return render_template("comments/thread.html", post=post, comments=comments)
+    return render_template(
+        "comments/thread.html",
+        post=post,
+        comments=comments,
+        cfg=get_config("comments"),
+    )
 
 
 def comments_sidebar_link():

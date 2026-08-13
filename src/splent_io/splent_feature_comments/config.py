@@ -7,13 +7,18 @@ Add your feature's env vars here so the framework can track them.
 To regenerate from source code: splent feature:inject-config splent_feature_comments
 """
 
-import os  # noqa: F401 — used when adding env vars below
+import os
 
 
 def inject_config(app):
     app.config.update(
         {
-            # Add your feature's env vars here, e.g.:
-            # "MY_VAR": os.getenv("MY_VAR", "default_value"),
+            # Publish new comments immediately instead of holding them for
+            # moderation. Off unless the product asks for it. Also
+            # admin-editable in the settings panel, which wins at request time.
+            "COMMENTS_AUTO_APPROVE": os.getenv("COMMENTS_AUTO_APPROVE", "")
+            .strip()
+            .lower()
+            in ("1", "true", "yes"),
         }
     )

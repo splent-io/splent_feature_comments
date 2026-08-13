@@ -93,3 +93,7 @@ msgstr "Eliminar"
 msgid "No comments yet."
 msgstr "Todavía no hay comentarios."
 
+#: src/splent_io/splent_feature_comments/routes.py:53
+msgid "Your comment has been published."
+msgstr "Tu comentario se ha publicado."
+

@@ -1,4 +1,5 @@
 from flask import flash, redirect, render_template, request, url_for
+from flask_babel import gettext as _
 from flask_login import login_required
 
 from splent_io.splent_feature_comments import comments_bp
@@ -9,6 +10,7 @@ from splent_io.splent_feature_comments.signals import (
 )
 from splent_framework.db import db
 from splent_framework.services.service_locator import service_proxy
+from splent_framework.settings.settings_schema import get_config
 
 comments_service = service_proxy("CommentsService")
 
@@ -33,17 +35,24 @@ def create(post_id):
         flash("Name and comment are required.", "danger")
         return redirect(request.referrer or url_for("post.index"))
 
+    # Whether a fresh comment goes live at once is an editorial decision, so
+    # it is read at request time through the declarative settings (panel
+    # value first, COMMENTS_AUTO_APPROVE second, off by default).
+    auto_approve = get_config("comments").get("auto_approve", False)
     comment = Comment(
         post_id=post_id,
         author_name=name,
         author_email=(request.form.get("author_email") or "").strip(),
         content=content,
-        approved=False,
+        approved=auto_approve,
     )
     db.session.add(comment)
     db.session.commit()
     comment_created.send(None, comment=comment)
-    flash("Your comment was submitted and is awaiting moderation.", "success")
+    if auto_approve:
+        flash(_("Your comment has been published."), "success")
+    else:
+        flash("Your comment was submitted and is awaiting moderation.", "success")
     return redirect(request.referrer or url_for("post.index"))
 
 

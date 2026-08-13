@@ -1,7 +1,8 @@
 {# ------------------------------------------------------------------ #}
 {# Comments thread partial.                                            #}
 {# Rendered INTO the post detail page (NOT a full page, no extends).   #}
-{# Context: `post`, `comments` (approved, oldest first).               #}
+{# Context: `post`, `comments` (approved, oldest first),               #}
+{#          `cfg` (get_config("comments") -> auto_approve).            #}
 {# ------------------------------------------------------------------ #}
 <section class="section comments-thread">
   <div class="container">
@@ -84,9 +85,11 @@
           {{ _('Post comment') }}
         </button>
 
+        {% if not (cfg is defined and cfg.auto_approve) %}
         <p class="comment-form__note text-muted">
           {{ _('Comments are moderated before appearing.') }}
         </p>
+        {% endif %}
       </form>
     {% endif %}
 

@@ -56,3 +56,9 @@ templates = ["comments/admin/list.html", "comments/index.html", "comments/thread
 models    = ["Comment"]
 hooks     = ["layout.authenticated_sidebar", "post.comments"]
 routes    = false
+
+# ── Configuration ─────────────────────────────────────────────────────────
+[tool.splent.config]
+# Publish new comments immediately instead of holding them for moderation.
+# Also admin-editable in the settings panel, which wins at request time.
+COMMENTS_AUTO_APPROVE = false
