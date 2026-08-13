@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "splent_feature_comments"
-version = "0.1.2"
+version = "0.2.0"
 readme = "README.md"
 requires-python = ">=3.13"
 
@@ -47,7 +47,7 @@ docker     = []
 [tool.splent.contract.requires]
 features = ["post"]
 features_manual = ["post"]
-env_vars = []
+env_vars = ["COMMENTS_AUTO_APPROVE"]
 signals  = []
 
 [tool.splent.contract.extensible]
